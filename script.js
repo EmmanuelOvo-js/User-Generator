@@ -47,6 +47,7 @@ function userData(user) {
     document.body.style.color = 'black'
   } else {
     document.body.style.background = 'blue'
+    document.body.style.color = 'white'
   }
 }
 
