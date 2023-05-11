@@ -1,10 +1,22 @@
 function fetchUsers() {
   spinner()
   fetch('https://randomuser.me/api')
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error('Reuest Failed, please try again later')
+      }
+      return res.json()
+    })
     .then((data) => {
       hideSpinner()
       userData(data.results[0])
+    })
+    .catch((error) => {
+      hideSpinner()
+      document.querySelector('#user').innerHTML = `
+      <p class="text-xl text-center text-red-500 mb-5 p-2"
+      style="background:black;">${error}</p>
+      `
     })
 }
 
